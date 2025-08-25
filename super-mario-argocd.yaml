@@ -1,0 +1,35 @@
+kind: Deployment
+metadata:
+  name: mario-argocd
+  namesapce: mario
+  labels:
+    app: mario
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mario-argocd
+  template:
+    metadata:
+      labels:
+        app: mario-argocd
+    spec:
+      containers:
+      - name: mario
+        image: pengbai/docker-mario
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mario-svc-argocd
+  namespace: mario
+spec:
+  type: LoadBalancer
+  selector:
+    app: mario-argocd
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
