@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: mario
-        image: pengbai/docker-mario
+        image: pengbai/docker-supermario
         ports:
         - containerPort: 8080
 ---
@@ -33,5 +33,6 @@ spec:
     port: 80
 
     targetPort: 8080
+
 
 
